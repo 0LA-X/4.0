@@ -10,22 +10,22 @@ YAY_DIR="/tmp/yay"
 
 PACMAN_PKGS=(
   # Utilities
-  nvim tmux python3
+  zoxide fzf nvim tmux
   gcc clang lld llvm 
   cmake meson ninja
-  zoxide git npm uv
   man-db btop nvtop
   stow rsync curl wget
-  ripgrep fd pv jq
+  git ripgrep fd pv jq
   cifs-utils uwsm 7zip
-  samba ufw coreutils
+  samba ufw coreutils chafa
+  python python-pip uv npm 
   fzf eza duf dysk xdg-user-dirs
   unzip unrar 7zip unarchiver
-  base base-devel sof-firmware
 
-  brightnessctl ddcutil playerctl
   usbutils udisks2 udiskie
   imagemagick ffmpeg ffmpegthumbnailer
+  base base-devel sof-firmware
+  brightnessctl ddcutil playerctl
 
   # AMD Drivers
   amd-ucode vdpauinfo
@@ -52,16 +52,15 @@ PACMAN_PKGS=(
   # Fonts
   ttf-cascadia-code-nerd
   ttf-jetbrains-mono-nerd
-  ttf-material-symbols-variable
+  # ttf-material-symbols-variable
   ttf-nerd-fonts-symbols
   noto-fonts-emoji
 )
 
 ### --- AUR packages ---
 AUR_PKGS=(
-  swaync-git rofi-wayland
   bibata-cursor-theme-bin
-  nautilus-share  gvfs-mtp 
+  nautilus-share gvfs-mtp 
   nautilus-admin-gtk4
   nautilus-image-converter
 
