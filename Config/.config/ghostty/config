@@ -1,0 +1,59 @@
+# ====================
+#   Ghostty Config
+# ====================
+font-family = CaskaydiaCove Nerd Font
+font-size = 17
+
+#[ Cursor - #FFFF33 - #00CCFF - #FF073A - #39FF14]
+cursor-color = #00CCFF
+cursor-text = #000000
+cursor-style = block
+cursor-style-blink = true
+
+background-opacity = 0.80
+
+window-padding-x = 5
+window-padding-y = 5
+
+#[ MISC ]
+gtk-single-instance = true
+
+#[ Shell-integration ]
+shell-integration = zsh
+confirm-close-surface = false
+
+# [ Themes - axgruv - mono - Pro ] 
+theme = "dark"
+
+#[ Shaders_Main ]
+custom-shader = ./shaders/cursor_smear.glsl
+custom-shader = ./shaders/cursor_warp.glsl
+custom-shader = ./shaders/cursor_blaze_no_trail.glsl
+# custom-shader = ./shaders/bloom050.glsl
+
+#[ Shaders_more ]
+custom-shader = shaders/ripple_cursor.glsl
+# custom-shader = ./shaders/
+
+# [ Keybindings ]
+keybind = ctrl+space>r=reload_config
+
+keybind = ctrl+space>n=new_window
+keybind = ctrl+space>t=new_tab
+keybind = ctrl+space>q=close_tab
+
+#keybind = shift+alt+h=previous_tab
+#keybind = shift+alt+l=next_tab
+
+#keybind = ctrl+space>equal=equalize_splits
+
+# [Split Navigation]
+#keybind = ctrl+space>h=new_split:left
+#keybind = ctrl+space>j=new_split:down
+#keybind = ctrl+space>k=new_split:up
+#keybind = ctrl+space>l=new_split:right
+
+#keybind = alt+h=goto_split:left
+#keybind = alt+j=goto_split:down
+#keybind = alt+k=goto_split:up
+#keybind = alt+l=goto_split:right
