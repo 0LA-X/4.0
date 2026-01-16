@@ -1,6 +1,5 @@
-FIXES
-
 Config/.config/waybar
+Config/.config/hypr/hyprland/animations
 
 *.alt
 *.bak
