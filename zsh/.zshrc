@@ -4,15 +4,20 @@
 
 # -- Launch TMUX
 if [[ -z "$TMUX" ]] && command -v tmux >/dev/null; then
-  tmux attach -t 󰹡 main || tmux new -s 󰹡 main
+  tmux attach -t 0LA-X || tmux new -s 0LA-X
 fi
 
 # -- Fun stuff 
 pokego -r 1,3,6 -no-title
 # fastfetch
 
-#[ PATH ]
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/env_01/bin:$PATH"
+#[ PATH - $HOME/env_01/bin:]
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+ 
+#[ Keybinds ]
+bindkey '^H' backward-kill-word 
+bindkey '^Z' undo
+
 
 # =====================================================
 #   Completion system (before completion plugins)
@@ -78,16 +83,13 @@ zinit snippet OMZP::colored-man-pages
 
 zinit ice wait'0' lucid
 zinit light zsh-users/zsh-history-substring-search
-
-# After all zinit plugins
-zinit cdreplay -q
-
-# typeset -gA FAST_HIGHLIGHT
-# FAST_HIGHLIGHT[history-substring-search-up]=1
-# FAST_HIGHLIGHT[history-substring-search-down]=1
-
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=green'
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red'
+
+# After all zinit plugins
+# zstyle ':zsh-vi-mode:*' key-bindings viins
+zinit cdreplay -q
+
 
 # =====================================================
 #  History behavior
