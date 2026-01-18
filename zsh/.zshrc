@@ -2,21 +2,29 @@
 #  Session bootstrap
 # =====================================================
 
-# -- Launch TMUX
-if [[ -z "$TMUX" ]] && command -v tmux >/dev/null; then
-  tmux attach -t 0LA-X || tmux new -s 0LA-X
-fi
+if [[ -o interactive ]]; then
+  # -- Launch TMUX
+  if [[ -z "$TMUX" ]] && command -v tmux >/dev/null; then
+    tmux attach -t 0LA-X || tmux new -s 0LA-X
+  fi
 
 # -- Fun stuff 
-pokego -r 1,3,6 -no-title
-# fastfetch
+  pokego -r 1,3,6 -no-title
+  # fastfetch
+fi
 
 #[ PATH - $HOME/env_01/bin:]
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
  
+#====================================================
 #[ Keybinds ]
-bindkey '^H' backward-kill-word 
-bindkey '^Z' undo
+for map in emacs viins vicmd; do
+  bindkey -M $map '^[[1~' beginning-of-line   # Home
+  bindkey -M $map '^[[4~' end-of-line         # End
+  bindkey -M $map '^[[3~' delete-char         # Delete
+  bindkey -M $map '^H' backward-kill-word 
+  bindkey -M $map '^Z' undo
+done
 
 
 # =====================================================
