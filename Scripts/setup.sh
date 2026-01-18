@@ -26,6 +26,8 @@ PACMAN_PKGS=(
   imagemagick ffmpeg ffmpegthumbnailer
   base base-devel sof-firmware
   brightnessctl ddcutil playerctl
+  portmidi sdl2_image sdl2_mixer sdl2_ttf  
+
 
   # AMD Drivers
   amd-ucode vdpauinfo
