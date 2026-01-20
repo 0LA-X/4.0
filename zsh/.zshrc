@@ -72,10 +72,10 @@ zstyle ':zsh-vi-mode:*' prompt ''
 
 # -- Autosuggestions & Fast syntax highlighting (heavy → lazy)
 zinit light zsh-users/zsh-autosuggestions
-zinit light zdharma-continuum/fast-syntax-highlighting
-
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#CBAACB"
+
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # -- Completion extensions
 zinit light zsh-users/zsh-completions
@@ -88,6 +88,7 @@ zinit snippet OMZL::history.zsh
 zinit snippet OMZP::fzf
 zinit snippet OMZP::zoxide
 zinit snippet OMZP::colored-man-pages
+zinit snippet OMZP::command-not-found
 
 zinit ice wait'0' lucid
 zinit light zsh-users/zsh-history-substring-search
