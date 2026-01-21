@@ -10,14 +10,14 @@ local options = {
     svelte = { "prettier" },
     nix = { "nixfmt" },
     bash = { "shfmt" },
-    -- python = { "isort", "black" },  -- You can use both
+    python = { "isort", "black" },  -- You can use both
     -- rust = { "rustfmt" },
   },
 
-  -- format_on_save = {
-  --   timeout_ms = 500,
-  --   lsp_fallback = true,
-  -- },
+  format_on_save = {
+    timeout_ms = 1000,
+    lsp_fallback = true,
+  },
 }
 
 return options
