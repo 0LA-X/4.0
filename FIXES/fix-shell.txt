@@ -1,0 +1,40 @@
+## NOTE: if running into pch(Pre-compiled Header files) disabled crosscheck makepkg.conf or create a local config to be used i.e "~/.config/pacman/makepkg.conf"
+
+And crosscheck the following:
+--------------------------------------------------------
+
+#-- Set Clang as compiler
+export CC=clang
+export CXX=clang++
+export QMAKESPEC=linux-clang
+
+#-- Compiler and Linker Flags
+CFLAGS="-march=x86-64 -mtune=generic -O2 -pipe -fexceptions -pthread \
+        -Wp,-D_FORTIFY_SOURCE=3 -Wformat -Werror=format-security \
+        -fstack-clash-protection -fcf-protection"
+
+CXXFLAGS="$CFLAGS -Wp,-D_GLIBCXX_ASSERTIONS -pthread"
+
+LDFLAGS="-Wl,-O1 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now \
+         -Wl,-z,pack-relative-relocs -fuse-ld=lld -pthread"
+
+LTOFLAGS="-flto=thin"
+
+--------------------------------------------------------
+
+If done and still doesn't work NUKE everything:
+
+#### 1. FIRST, remove the entire quickshell build cache
+rm -rf ~/.cache/yay/quickshell-git/
+
+#### 2. Remove any CMake cache files that might be elsewhere
+find ~ -name "CMakeCache.txt" -path "*quickshell*" -delete 2>/dev/null || true
+find ~ -name "*.pch" -path "*quickshell*" -delete 2>/dev/null || true
+
+#### 3. Create a TEMPORARY clean environment without your user config
+# (Backup your current ~/.makepkg.conf first)
+mv ~/.makepkg.conf ~/.makepkg.conf.backup
+
+#### 4. Try with COMPLETELY clean system defaults
+cd /tmp
+yay -S quickshell-git --clean --cleanbuild
