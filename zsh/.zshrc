@@ -1,7 +1,6 @@
-# =====================================================
-#  Session bootstrap
-# =====================================================
-
+#============================#
+    #[ Session bootstrap ]               
+#============================#
 if [[ -o interactive ]]; then
   # -- Launch TMUX
   if [[ -z "$TMUX" ]] && command -v tmux >/dev/null; then
@@ -16,8 +15,9 @@ fi
 #[ PATH - $HOME/env_01/bin:]
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
  
-#====================================================
-#[ Keybinds ]
+#================#
+  #[ Keybinds ]  
+#================#
 for map in emacs viins vicmd; do
   bindkey -M $map '^[[1~' beginning-of-line   # Home
   bindkey -M $map '^[[4~' end-of-line         # End
