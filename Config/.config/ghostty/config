@@ -5,7 +5,7 @@ font-family = CaskaydiaCove Nerd Font
 font-size = 17
 
 #[ Cursor - #FFFF33 - #00CCFF - #FF073A - #39FF14]
-cursor-color = #00CCFF
+cursor-color = #39FF14
 cursor-text = #000000
 cursor-style = block
 cursor-style-blink = true
@@ -22,18 +22,22 @@ gtk-single-instance = true
 shell-integration = zsh
 confirm-close-surface = false
 
-# [ Themes - axgruv - mono - Pro ] 
-theme = "dark"
+#[ Themes - axgruv - mono - 12-bit ] 
+# theme = "Vesper"
+theme = "axgruv"
+# theme = ""
 
 #[ Shaders_Main ]
-custom-shader = ./shaders/cursor_smear.glsl
-custom-shader = ./shaders/cursor_warp.glsl
+custom-shader-animation = always
 custom-shader = ./shaders/cursor_blaze_no_trail.glsl
-# custom-shader = ./shaders/bloom050.glsl
+custom-shader = ./shaders/ripple_rectangle_cursor.glsl
 
-#[ Shaders_more ]
-custom-shader = shaders/ripple_cursor.glsl
+custom-shader = ./shaders/cursor_warp.glsl
+custom-shader = ./shaders/cursor_smear_fade.glsl
+
 # custom-shader = ./shaders/
+# custom-shader = ./shaders/
+ 
 
 # [ Keybindings ]
 keybind = ctrl+space>r=reload_config
