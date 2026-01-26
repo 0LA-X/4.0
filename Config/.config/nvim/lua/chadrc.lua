@@ -6,7 +6,7 @@
 local M = {}
 
 M.base46 = {
-	theme = "gruvbox",
+	theme = "darcula-dark",
   transparency = true,
 
 	hl_override = {
@@ -35,10 +35,10 @@ M.nvdash = {
 M.ui = {
   statusline = {
       -- default/vscode/vscode_colored/minimal
-     theme = "minimal",
+     theme = "default",
       -- round and block will work for minimal theme only
       -- default/round/block/arrow separators work only for default statusline theme
-     separator_style = "block",
+     separator_style = "default",
   },
 
   tabufline = {
