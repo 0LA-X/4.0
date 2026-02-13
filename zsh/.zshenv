@@ -2,7 +2,7 @@
 export HISTFILE="$HOME/.zsh_history"    
 
 export TERM='xterm-256color'
-export TERMINAL="kitty"
+export TERMINAL="ghostty"
 
 export EDITOR="nvim"
 export VISUAL="nvim"

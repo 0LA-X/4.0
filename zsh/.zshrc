@@ -22,8 +22,12 @@ for map in emacs viins vicmd; do
   bindkey -M $map '^[[1~' beginning-of-line   # Home
   bindkey -M $map '^[[4~' end-of-line         # End
   bindkey -M $map '^[[3~' delete-char         # Delete
+
   bindkey -M $map '^H' backward-kill-word 
   bindkey -M $map '^Z' undo
+
+  # bindkey -M $map '^[[A' history-substring-search-up
+  # bindkey -M $map '^[[B' history-substring-search-down
 done
 
 
