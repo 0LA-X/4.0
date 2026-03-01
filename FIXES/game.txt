@@ -1,0 +1,18 @@
+# -----------------
+#  [Setup Vulkan]
+# -----------------
+mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon
+vulkan-tools vulkan-icd-loader lib32-vulkan-icd-loader  
+vkd3d lib32-vkd3d
+
+# ----------------------
+#  [Setup Wine/Lutris]
+# ----------------------
+lutris umu-launcher steam bottles
+gamemode gamescope mangohud
+wine-tkg-staging-bin wine-gaming-dependencies
+winetricks dxvk-bin wine-mono wine-gecko
+
+#[ DS wireless controllers ]
+sixpair usbutils bluez-ps3 joystick
+

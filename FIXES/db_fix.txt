@@ -1,0 +1,14 @@
+
+
+# 1. First, backup your current database
+sudo cp /var/lib/pacman/local/DB /var/lib/pacman/local/DB.backup
+
+# 2. Update pacman database with sync
+sudo pacman -Syy
+
+# 3. Force refresh the local package database
+sudo pacman -Qqn | sudo pacman -S --dbonly --overwrite '*' -
+
+# 4. If step 3 doesn't work, try regenerating the database
+sudo pacman-db-upgrade
+sudo pacman -Syyu
