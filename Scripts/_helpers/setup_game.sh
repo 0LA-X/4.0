@@ -34,21 +34,15 @@ DEPS=(
   # == [ Launchers ]
   lutris umu-launcher steam bottles
   gamemode gamescope mangohud
-
 )
-
-
-
-
-
-
-
 
 
 install_pkgs(){
   echo "▶ Installing pacman packages..."
-  sudo pacman -S --needed --noconfirm "${PACMAN_PKGS[@]}"
+  sudo yay -S --needed --noconfirm "${PACMAN_PKGS[@]}"
 
   echo "▶ Installing pacman packages..."
-  sudo pacman -S --needed --noconfirm "${PACMAN_PKGS[@]}"
+  sudo yay -S --needed --noconfirm "${PACMAN_PKGS[@]}"
 }
+
+install_pkgs
