@@ -1,8 +1,9 @@
-Config/.config/waybar
-Config/.config/hypr/hyprland/animations
-
-FIXES
-!FIXES/fix-shell.txt
+# FIXES
+# !FIXES/fix-shell.txt
 
 *.alt
 *.bak
+
+
+*_bak
+*_alt
