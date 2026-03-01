@@ -1,19 +1,18 @@
-#============================#
-    #[ Session bootstrap ]               
-#============================#
-if [[ -o interactive ]]; then
-  # -- Launch TMUX
-  if [[ -z "$TMUX" ]] && command -v tmux >/dev/null; then
-    tmux attach -t 0LA-X || tmux new -s 0LA-X
-  fi
-
-# -- Fun stuff 
-  pokego -r 1,3,6 -no-title
+#==========================# 
+#  [ Session bootstrap ]               
+#=========================#
+# if [[ -o interactive ]]; then
+    # -- Fun stuff 
+  pokego -r 6,1,5,8,2,7 -no-title -s
+  # pokego --name charmeleon --no-title # charizard - jigglypuff - eevee - - - 
   # fastfetch
+# fi
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-#[ PATH - $HOME/env_01/bin:]
-export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
  
 #================#
   #[ Keybinds ]  
@@ -30,13 +29,12 @@ for map in emacs viins vicmd; do
   # bindkey -M $map '^[[B' history-substring-search-down
 done
 
-
 # =====================================================
 #   Completion system (before completion plugins)
 # =====================================================
 autoload -Uz compinit
 compinit -C        # fast, safe if you trust your plugins
-_comp_options+=(globdots)
+# _comp_options+=(globdots)
 
 # =====================================================
 #  Zinit bootstrap (must be early)
@@ -56,19 +54,20 @@ autoload -Uz _zinit
 
 
 # -- Prompt (Starship)
-export STARSHIP_DISABLE_VIRTUALENV_PROMPT=1
+# zinit ice as"command" from"gh-r" \
+#   atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+#   atpull"%atclone" src"init.zsh"
+# zinit light starship/starship
 
-zinit ice as"command" from"gh-r" \
-  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-  atpull"%atclone" src"init.zsh"
-zinit light starship/starship
+# -- Prompt (powerlevel10k enable)
+zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # ===========================================
 # -- Plugins (lazy-loaded for speed) -- #
 # ===========================================
 
-# -- Vi mode
-zinit ice depth=1 wait'0' lucid
+# # -- Vi mode - wait'0' lucid
+zinit ice depth=1 
 zinit light jeffreytse/zsh-vi-mode
 
 # Prevent starship <-> vi-mode recursion
@@ -77,7 +76,7 @@ zstyle ':zsh-vi-mode:*' prompt ''
 # -- Autosuggestions & Fast syntax highlighting (heavy → lazy)
 zinit light zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#CBAACB"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#E3E4FA"
 
 zinit light zdharma-continuum/fast-syntax-highlighting
 
@@ -100,15 +99,13 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=green'
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red'
 
 # After all zinit plugins
-# zstyle ':zsh-vi-mode:*' key-bindings viins
 zinit cdreplay -q
 
 
 # =====================================================
 #  History behavior
 # =====================================================
-
-HISTSIZE=6000
+HISTSIZE=8000
 SAVEHIST=$HISTSIZE
 HISTFILE="$HOME/.zsh_history"
 HIST_STAMPS="dd/mm/yyyy"
@@ -127,10 +124,10 @@ setopt hist_find_no_dups
 # =====================================================
 
 # Navigation (zoxide)
-alias .='z ../'
-alias ..='z ../../'
-alias ...='z ../../../'
-alias ....='z ../../../../'
+# alias .='z ../'
+# alias ..='z ../../'
+# alias ...='z ../../../'
+# alias ....='z ../../../../'
 
 # Listing (eza)
 alias c='clear'
@@ -168,7 +165,7 @@ alias wificonnect='nmcli device wifi connect --ask'
 # System
 alias pacman='sudo pacman'
 alias update-grub='sudo grub-mkconfig -o /boot/grub/grub.cfg'
-alias gparted='sudo -E gparted'
+# alias gparted='sudo -E gparted'
 
 # yt-dlp
 alias yt-480='yt-dlp -f "bestvideo[height=480]+bestaudio/best[height=480]"'
@@ -177,3 +174,6 @@ alias yt-720='yt-dlp -f "bestvideo[height=720]+bestaudio/best[height=720]"'
 # Session
 alias exit-user='pkill -TERM -u $USER'
 alias logout-user='pkill Hyprland || pkill tmux || loginctl terminate-user $USER'
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

@@ -16,4 +16,6 @@ export XMODIFIERS=@im=none
 
 #[ PATH ]
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+# export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/env_01/bin:$PATH"
+
 CORN="$HOME/Videos/yt-dlp/._tmp/.corn"
