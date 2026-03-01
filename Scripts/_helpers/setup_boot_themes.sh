@@ -6,7 +6,7 @@ set -euo pipefail  # safer bash defaults
 PLYMOUTH_THEME_NAME="rings"
 PLYMOUTH_THEME_DIR="$HOME/dot3.0/Patches/plymouth-themes"
 PLYMOUTH_THEME_ARCHIVE="$PLYMOUTH_THEME_DIR/$PLYMOUTH_THEME_NAME.tar.xz"
-PLYMOUTH_THEME_DEST="/usr/share/plymouth"
+PLYMOUTH_THEME_DEST="/usr/share/plymouth/themes/"
 
 GRUB_THEME_NAME="Sekiro_theme"
 GRUB_THEME_SRC="$HOME/dot3.0/Patches/grub-themes/$GRUB_THEME_NAME"
