@@ -10,16 +10,18 @@ YAY_DIR="/tmp/yay"
 
 PACMAN_PKGS=(
   # Utilities
-  zoxide fzf nvim tmux
+  zoxide fzf nvim 
   gcc clang lld llvm 
-  cmake meson ninja
-  man-db btop nvtop
+  cmake meson ninja gdb
   stow rsync curl wget
   git ripgrep fd pv jq
+
+  ncdu tldr duf impala
+
   cifs-utils uwsm 7zip
   samba ufw coreutils chafa
   python python-pip uv npm 
-  fzf eza duf dysk xdg-user-dirs
+  fzf eza dysk xdg-user-dirs
   unzip unrar 7zip unarchiver
 
   usbutils udisks2 udiskie
@@ -28,6 +30,12 @@ PACMAN_PKGS=(
   brightnessctl ddcutil playerctl
   portmidi sdl2_image sdl2_mixer sdl2_ttf  
 
+  kitty ghostty tmux
+  man-db btop nvtop
+
+  #[ ]
+  tuned-ppd
+  cpupower cpu-x
 
   # AMD Drivers
   amd-ucode vdpauinfo
@@ -37,24 +45,20 @@ PACMAN_PKGS=(
 
   # Needed
   libnotify gnome-keyring polkit-gnome
-  fastfetch fuzzel wlogout
-  yt-dlp mpv mpv-mpris cava
+  fastfetch fuzzel 
+  yt-dlp mpv mpv-mpris 
   wf-recorder wl-clipboard
   grim slurp cliphist
 
   # Hyprland
   hyprland hypridle hyprlock
   xdg-desktop-portal-hyprland
-  waybar hyprpaper waypaper
-  kitty power-profiles-daemon
 
   # Nautilus
   nautilus 
 
   # Fonts
   ttf-cascadia-code-nerd
-  ttf-jetbrains-mono-nerd
-  # ttf-material-symbols-variable
   ttf-nerd-fonts-symbols
   noto-fonts-emoji
 )
@@ -70,11 +74,16 @@ AUR_PKGS=(
   adw-gtk-theme nwg-look
   papirus-icon-theme
   pokego-git
-  
-  #packaging??
-  file-roller
-  bazarr breezy
+  file-roller bazarr breezy
+
+  flaresolverr suwayomi-server-bin
+  zen-browser-bin firefox
 )
+
+SHELL=(
+  caelestia-shell-git caelestia-cli-git
+)
+
 
 
 show_header() {
@@ -123,6 +132,9 @@ install_pkgs(){
   echo "▶ Installing AUR packages..."
   yay -S --needed --noconfirm "${AUR_PKGS[@]}"
 
+  echo "▶ Installing CAELESTIA SHELL..."
+  yay -S --needed --noconfirm "${SHELL[@]}"
+  
   echo "✔ All packages installed successfully."
 }
 
@@ -157,10 +169,10 @@ helper_scripts(){
 
   # echo "[ + ] Setting up PATCHES for Themes"
   # $SCR_DIR/setup_patches.sh
-  #
-  # echo "[ + ] Setting up Boot-themes"
-  # $SCR_DIR/setup_boot_themes.sh
-  #
+  
+  echo "[ + ] Setting up Boot-themes"
+  $SCR_DIR/setup_boot_themes.sh
+ 
   # echo "[ + ] Setting up Spotify [spicetify]"
   # $SCR_DIR/spicetify.sh
 
