@@ -10,32 +10,34 @@ YAY_DIR="/tmp/yay"
 
 PACMAN_PKGS=(
   # Utilities
-  zoxide fzf nvim 
-  gcc clang lld llvm 
-  cmake meson ninja gdb
+  gcc gdb cmake meson 
+  clang lld llvm ninja
+  nodejs-lts-iron npm
+  rustup lldb ripgrep
+  git uwsm fd pv jq
+  python python-pip python-uv 
+  python-virtualenv uv  
+  
+  zoxide fzf nvim tmux
   stow rsync curl wget
-  git ripgrep fd pv jq
-
   ncdu tldr duf impala
-
-  cifs-utils uwsm 7zip
-  samba ufw coreutils chafa
-  python python-pip uv npm 
-  fzf eza dysk xdg-user-dirs
-  unzip unrar 7zip unarchiver
+  man-db btop nvtop
+  
+  cifs-utils 7zip
+  unzip unrar unarchiver
+  
+  samba ufw chafa xdg-user-dirs
+  fzf eza dysk fastfetch 
 
   usbutils udisks2 udiskie
   imagemagick ffmpeg ffmpegthumbnailer
-  base base-devel sof-firmware
   brightnessctl ddcutil playerctl
   portmidi sdl2_image sdl2_mixer sdl2_ttf  
 
-  kitty ghostty tmux
-  man-db btop nvtop
+  kitty ghostty 
 
   #[ ]
-  tuned-ppd
-  cpupower cpu-x
+  tuned-ppd cpupower cpu-x
 
   # AMD Drivers
   amd-ucode vdpauinfo
@@ -43,19 +45,16 @@ PACMAN_PKGS=(
   vulkan-radeon vulkan-icd-loader
   libvdpau-va-gl libva-mesa-driver
 
-  # Needed
-  libnotify gnome-keyring polkit-gnome
-  fastfetch fuzzel 
+  #[ MISC] 
   yt-dlp mpv mpv-mpris 
-  wf-recorder wl-clipboard
-  grim slurp cliphist
 
   # Hyprland
   hyprland hypridle hyprlock
   xdg-desktop-portal-hyprland
+  xdg-desktop-portal-gtk
 
-  # Nautilus
-  nautilus 
+  #[ Explorer ]
+  nautilus yazi
 
   # Fonts
   ttf-cascadia-code-nerd
@@ -76,7 +75,7 @@ AUR_PKGS=(
   pokego-git
   file-roller bazarr breezy
 
-  flaresolverr suwayomi-server-bin
+  # flaresolverr suwayomi-server-bin
   zen-browser-bin firefox
 )
 
@@ -117,12 +116,12 @@ install_yay(){
 }
 
 ensure_yay() {
-    if ! command -v yay &> /dev/null; then
-        echo "{ ! } yay not found. Installing..."
-        install_yay
-    else
-        echo -e "{ - } yay is already installed.."
-    fi
+  if ! command -v yay &> /dev/null; then
+    echo "{ ! } yay not found. Installing..."
+    install_yay
+  else
+    echo -e "{ - } yay is already installed.."
+  fi
 }
 
 install_pkgs(){
@@ -164,19 +163,19 @@ helper_scripts(){
   echo "[ + ] Setting up Audio & Bluetooth"
   $SCR_DIR/setup_audio.sh
 
-  echo "[ + ] Setting up Keypad-Sounds (Wayvibes)"
-  $SCR_DIR/setup_keyboard.sh
+  echo "[ + ] Setting up Boot-themes"
+  $SCR_DIR/setup_boot_themes.sh
+  
+  # echo "[ + ] Setting up Keypad-Sounds (Wayvibes)"
+  # $SCR_DIR/setup_keyboard.sh
 
   # echo "[ + ] Setting up PATCHES for Themes"
   # $SCR_DIR/setup_patches.sh
-  
-  echo "[ + ] Setting up Boot-themes"
-  $SCR_DIR/setup_boot_themes.sh
  
   # echo "[ + ] Setting up Spotify [spicetify]"
   # $SCR_DIR/spicetify.sh
-
 }
+
 
 MAIN(){
 show_header
