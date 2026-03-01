@@ -23,9 +23,11 @@ BIT=(
 
 DEPS=(
   # == [ Vulkan ]
-  mesa lib32-mesa vulkan-radeon lib32-vulkan-radeon
+  mesa mesa-utils lib32-mesa 
+  vulkan-radeon lib32-vulkan-radeon
   vulkan-icd-loader lib32-vulkan-icd-loader vulkan-tools
-
+  vdpauinfo libva-utils libvdpau-va-gl libva-mesa-driver 
+  
   # == [ Wine ]
   wine wine-mono wine-gecko
   dxvk-bin vkd3d 
