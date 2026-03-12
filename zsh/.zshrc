@@ -1,12 +1,16 @@
 #==========================# 
 #  [ Session bootstrap ]               
 #=========================#
-# if [[ -o interactive ]]; then
-    # -- Fun stuff 
+if [[ -o interactive ]]; then
   pokego -r 6,1,5,8,2,7 -no-title -s
   # pokego --name charmeleon --no-title # charizard - jigglypuff - eevee - - - 
   # fastfetch
-# fi
+# -- Launch TMUX
+  if [[ -z "$TMUX" ]] && command -v tmux >/dev/null; then
+    tmux attach -t 0LA-X || tmux new -s 0LA-X
+  fi
+
+fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
