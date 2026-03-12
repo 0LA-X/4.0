@@ -11,14 +11,14 @@ BIT=(
   libpulse lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib
 
   openssl lib32-openssl libjpeg-turbo lib32-libjpeg-turbo libxcomposite lib32-libxcomposite
-  lib32-freetype2  
+  lib32-freetype2  # lib32-
 
   libxinerama lib32-libxinerama ncurses lib32-ncurses opencl-icd-loader lib32-opencl-icd-loader 
   libxslt lib32-libxslt libva lib32-libva gtk3 lib32-gtk3 lib32-libxml2 sdl2 lib32-sdl2 
   gst-plugins-base-libs lib32-gst-plugins-base-libs 
   cups samba dosbox
 
-  usbutils bluez-ps3 joyutils
+  usbutils bluez-ps3 joyutils 
 )
 
 DEPS=(
@@ -29,7 +29,7 @@ DEPS=(
   vdpauinfo libva-utils libvdpau-va-gl libva-mesa-driver 
   
   # == [ Wine ]
-  wine wine-mono wine-gecko
+  # wine-tkg-staging-bin wine-mono wine-gecko
   dxvk-bin vkd3d 
   winetricks wine-gaming-dependencies
 
@@ -40,11 +40,11 @@ DEPS=(
 
 
 install_pkgs(){
-  echo "▶ Installing pacman packages..."
-  sudo yay -S --needed --noconfirm "${PACMAN_PKGS[@]}"
+  echo "▶ Installing Dependencies..."
+  yay -S --needed --noconfirm "${DEPS[@]}"
 
-  echo "▶ Installing pacman packages..."
-  sudo yay -S --needed --noconfirm "${PACMAN_PKGS[@]}"
+  echo "▶ Installing WINE/VULKAN/LAUNCHERS packages..."
+  yay -S --needed "${BIT[@]}"
 }
 
 install_pkgs

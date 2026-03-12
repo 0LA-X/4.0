@@ -24,10 +24,12 @@ PACMAN_PKGS=(
   man-db btop nvtop
   
   cifs-utils 7zip
+  # cdrtools squashfs-tools
   unzip unrar unarchiver
   
   samba ufw chafa xdg-user-dirs
   fzf eza dysk fastfetch 
+  trash-cli
 
   usbutils udisks2 udiskie
   imagemagick ffmpeg ffmpegthumbnailer
@@ -38,9 +40,10 @@ PACMAN_PKGS=(
 
   #[ ]
   tuned-ppd cpupower cpu-x
+  geoclue gammastep polkit-gnome
 
   # AMD Drivers
-  amd-ucode vdpauinfo
+  amd-ucode vdpauinfo sof-firmware
   mesa mesa-utils libva-utils
   vulkan-radeon vulkan-icd-loader
   libvdpau-va-gl libva-mesa-driver
@@ -51,7 +54,7 @@ PACMAN_PKGS=(
   # Hyprland
   hyprland hypridle hyprlock
   xdg-desktop-portal-hyprland
-  xdg-desktop-portal-gtk
+  xdg-desktop-portal-gtk hyprpolkitagent
 
   #[ Explorer ]
   nautilus yazi
@@ -72,11 +75,13 @@ AUR_PKGS=(
   # Theming
   adw-gtk-theme nwg-look
   papirus-icon-theme
-  pokego-git
+  pokego-git 
   file-roller bazarr breezy
 
-  # flaresolverr suwayomi-server-bin
-  zen-browser-bin firefox
+  firefox obsidian terraria-server
+  flaresolverr suwayomi-server-bin
+  
+  # zen-browser-bin 
 )
 
 SHELL=(
@@ -181,7 +186,7 @@ MAIN(){
 show_header
 ensure_yay
 install_pkgs
-stow_dots
+# stow_dots
 helper_scripts
 }
 
