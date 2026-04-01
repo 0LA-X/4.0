@@ -19,3 +19,6 @@ export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 # export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$HOME/env_01/bin:$PATH"
 
 CORN="$HOME/Videos/yt-dlp/._tmp/.corn"
+
+export SPOTIPY_CLIENT_ID=78c53df1b3394f31acc9944fb7231b0b
+export SPOTIPY_CLIENT_SECRET=5c54fdda448141ed91150ddb63475857
