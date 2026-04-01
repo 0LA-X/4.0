@@ -8,84 +8,95 @@ SCR_DIR="$HOME/4.0/Scripts/_helpers"
 YAY_DIR="/tmp/yay"
 
 
+# -----------------------------------------
+# Pacman Packages
+# -----------------------------------------
 PACMAN_PKGS=(
-  # Utilities
-  gcc gdb cmake meson 
-  clang lld llvm ninja
+  # ---- Core Dev Tools ----
+  cmake clang lld llvm
+  gcc gdb meson ninja
   nodejs-lts-iron npm
-  rustup lldb ripgrep
-  git uwsm fd pv jq
-  python python-pip python-uv 
-  python-virtualenv uv  
-  
-  zoxide fzf nvim tmux
-  stow rsync curl wget
-  ncdu tldr duf impala
-  man-db btop nvtop
-  
-  cifs-utils 7zip
-  # cdrtools squashfs-tools
-  unzip unrar unarchiver
-  
-  samba ufw chafa xdg-user-dirs
-  fzf eza dysk fastfetch 
-  trash-cli
+  python python-pip python-uv python-virtualenv 
+  uv rustup lldb
+  git stow
 
-  usbutils udisks2 udiskie
-  imagemagick ffmpeg ffmpegthumbnailer
-  brightnessctl ddcutil playerctl
-  portmidi sdl2_image sdl2_mixer sdl2_ttf  
+  # ---- Utilities ----
+  btop nvtop curl wget
+  duf dysk impala 
+  fd ripgrep ncdu fzf jq pv 
+  man-db rsync tldr 
+  tmux nvim uwsm zoxide
 
-  kitty ghostty 
+  # ---- File Archiving ----
+  7zip cdrtools squashfs-tools
+  unarchiver unzip unrar
 
-  #[ ]
-  tuned-ppd cpupower cpu-x
-  geoclue gammastep polkit-gnome
+  # ---- System Tools ----
+  acpi acpid brightnessctl
+  cifs-utils cpu-x cpupower tuned-ppd
+  ddcutil geoclue gammastep polkit-gnome
+  samba xdg-user-dirs ufw 
+  udisks2 udiskie usbutils 
 
-  # AMD Drivers
-  amd-ucode vdpauinfo sof-firmware
-  mesa mesa-utils libva-utils
-  vulkan-radeon vulkan-icd-loader
-  libvdpau-va-gl libva-mesa-driver
+  # ---- Terminal Apps ----
+  kitty ghostty eza
+  fastfetch chafa trash-cli
 
-  #[ MISC] 
-  yt-dlp mpv mpv-mpris 
+  # ---- Media ----
+  ffmpeg ffmpegthumbnailer
+  imagemagick mpv mpv-mpris
+  yt-dlp playerctl portmidi
+  sdl2_image sdl2_mixer sdl2_ttf
 
-  # Hyprland
+  # ---- AMD Drivers ----
+  amd-ucode libva-utils libva-mesa-driver 
+  libvdpau-va-gl mesa mesa-utils
+  sof-firmware vdpauinfo
+  vulkan-icd-loader vulkan-radeon
+
+  # ---- Hyprland Ecosystem ----
   hyprland hypridle hyprlock
+  hyprpolkitagent xdg-desktop-portal-gtk
   xdg-desktop-portal-hyprland
-  xdg-desktop-portal-gtk hyprpolkitagent
+  
 
-  #[ Explorer ]
+  # ---- File Managers ----
   nautilus yazi
 
-  # Fonts
+  # ---- Fonts ----
+  noto-fonts-emoji
   ttf-cascadia-code-nerd
   ttf-nerd-fonts-symbols
-  noto-fonts-emoji
 )
 
-### --- AUR packages ---
+# -----------------------------------------
+# AUR Packages
+# -----------------------------------------
 AUR_PKGS=(
-  bibata-cursor-theme-bin
-  nautilus-share gvfs-mtp 
+  # ---- Themes & Appearance ----
+  adw-gtk-theme nwg-look pokego-git
+  bibata-cursor-theme-bin papirus-icon-theme
+
+  # ---- Nautilus Addons ----
   nautilus-admin-gtk4
   nautilus-image-converter
+  nautilus-share gvfs-mtp
 
-  # Theming
-  adw-gtk-theme nwg-look
-  papirus-icon-theme
-  pokego-git 
-  file-roller bazarr breezy
-
+  # ---- Apps ----
+  bazarr breezy file-roller
   firefox obsidian terraria-server
   flaresolverr suwayomi-server-bin
   
-  # zen-browser-bin 
+
+  # zen-browser-bin (optional)
 )
 
+# -----------------------------------------
+# Shell (Custom)
+# -----------------------------------------
 SHELL=(
-  caelestia-shell-git caelestia-cli-git
+  caelestia-shell-git
+  caelestia-cli-git
 )
 
 
