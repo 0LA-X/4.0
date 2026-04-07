@@ -1,26 +1,94 @@
-#==========================# 
-#  [ Session bootstrap ]               
-#=========================#
+#=====================
+#  Session bootstrap   
+#=====================
 if [[ -o interactive ]]; then
-  pokego -r 6,1,5,8,2,7 -no-title -s
-  # pokego --name charmeleon --no-title # charizard - jigglypuff - eevee - - - 
-  # fastfetch
-# -- Launch TMUX
+
+  # -- Launch TMUX
   if [[ -z "$TMUX" ]] && command -v tmux >/dev/null; then
-    tmux attach -t 0LA-X || tmux new -s 0LA-X
+    tmux attach -t MAIN || tmux new -s MAIN
   fi
 
+  # -- ¯\_(ツ)_/¯
+  pokego --name charmeleon --no-title # charizard - jigglypuff - eevee - delcatty - charmeleon - 
+  # pokego -r 6,1,5,8,2,7 -no-title -s # 1,3,5,7
+  # fastfetch
 fi
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.; everything else may go below.
+# -- Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
- 
-#================#
-  #[ Keybinds ]  
-#================#
+# -- Source/load completions  
+autoload -Uz compinit
+compinit -C        # fast, safe if you trust your plugins
+# _comp_options+=(globdots)
+
+
+# ============
+#   ZINIT
+# ============
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+# --> Install zinit Pacman
+if [ ! -d "$ZINIT_HOME" ]; then 
+  mkdir -p "$(dirname $ZINIT_HOME)"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+# -- Source/Load zinit
+source "${ZINIT_HOME}/zinit.zsh"
+
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+
+# ============
+#   PLUGINS 
+# ============
+#[Powerlevel10k]
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# -- ZVM/zsh-vi-mode
+zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
+
+# -- Syntax-highlighting]
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+# -- zsh plugins
+zinit light zsh-users/zsh-completions
+# zinit light zsh-users/zsh-syntax-highlighting 
+
+# -- zsh-autosuggestions
+zinit light zsh-users/zsh-autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#E3E4FA"
+
+# -- zsh-history-substring-search
+zinit light zsh-users/zsh-history-substring-search
+zinit ice wait atload'_history_substring_search_config'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=#39FF14'
+HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=#0D1117'
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+
+# -- Tools (lazy)
+zinit snippet OMZL::completion.zsh  
+zinit snippet OMZL::key-bindings.zsh
+
+zinit snippet OMZP::zoxide
+zinit snippet OMZP::colored-man-pages
+zinit snippet OMZP::command-not-found
+
+
+# -- Load 
+zinit cdreplay -q
+
+# -- Keybinds
 for map in emacs viins vicmd; do
   bindkey -M $map '^[[1~' beginning-of-line   # Home
   bindkey -M $map '^[[4~' end-of-line         # End
@@ -28,104 +96,43 @@ for map in emacs viins vicmd; do
 
   bindkey -M $map '^H' backward-kill-word 
   bindkey -M $map '^Z' undo
-
-  # bindkey -M $map '^[[A' history-substring-search-up
-  # bindkey -M $map '^[[B' history-substring-search-down
 done
 
-# =====================================================
-#   Completion system (before completion plugins)
-# =====================================================
-autoload -Uz compinit
-compinit -C        # fast, safe if you trust your plugins
-# _comp_options+=(globdots)
 
-# =====================================================
-#  Zinit bootstrap (must be early)
-# =====================================================
-
-ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
-
-if [[ ! -d "$ZINIT_HOME" ]]; then
-  mkdir -p "${ZINIT_HOME:h}"
-  git clone --depth=1 https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-
-source "$ZINIT_HOME/zinit.zsh"
-
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
-# -- Prompt (Starship)
-# zinit ice as"command" from"gh-r" \
-#   atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-#   atpull"%atclone" src"init.zsh"
-# zinit light starship/starship
-
-# -- Prompt (powerlevel10k enable)
-zinit ice depth=1; zinit light romkatv/powerlevel10k
-
-# ===========================================
-# -- Plugins (lazy-loaded for speed) -- #
-# ===========================================
-
-# # -- Vi mode - wait'0' lucid
-zinit ice depth=1 
-zinit light jeffreytse/zsh-vi-mode
-
-# Prevent starship <-> vi-mode recursion
-zstyle ':zsh-vi-mode:*' prompt ''
-
-# -- Autosuggestions & Fast syntax highlighting (heavy → lazy)
-zinit light zsh-users/zsh-autosuggestions
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#E3E4FA"
-
-zinit light zdharma-continuum/fast-syntax-highlighting
-
-# -- Completion extensions
-zinit light zsh-users/zsh-completions
-
-# -- Tools (lazy)
-zinit snippet OMZL::completion.zsh  
-zinit snippet OMZL::key-bindings.zsh
-zinit snippet OMZL::history.zsh
-
-zinit snippet OMZP::fzf
-zinit snippet OMZP::zoxide
-zinit snippet OMZP::colored-man-pages
-zinit snippet OMZP::command-not-found
-
-zinit ice wait'0' lucid
-zinit light zsh-users/zsh-history-substring-search
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=green'
-HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=red'
-
-# After all zinit plugins
-zinit cdreplay -q
-
-
-# =====================================================
-#  History behavior
-# =====================================================
+#============
+#  History
+#============
 HISTSIZE=8000
 SAVEHIST=$HISTSIZE
 HISTFILE="$HOME/.zsh_history"
+HISTDUP=erase
 HIST_STAMPS="dd/mm/yyyy"
 
-setopt appendhistory
-setopt sharehistory
-setopt hist_ignore_space
-setopt hist_ignore_all_dups
-setopt hist_save_no_dups
-setopt hist_ignore_dups
-setopt hist_find_no_dups
+setopt APPENDHISTORY
+setopt SHAREHISTORY
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_FIND_NO_DUPS
 
 
-# =====================================================
+#[Completion styling]
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+
+
+#[Shell integration]
+eval "$(zoxide init --cmd cd zsh)"
+
+
+#==============
 #  Aliases
-# =====================================================
+#==============
 
 # Navigation (zoxide)
 # alias .='z ../'
@@ -153,7 +160,7 @@ alias sudo-nvim='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_
 alias sudo-vi='sudo env WAYLAND_DISPLAY=$WAYLAND_DISPLAY XDG_RUNTIME_DIR=$XDG_RUNTIME_DIR HOME=/root nvim'
 
 # Git
-alias ga='git add '
+alias ga='git add'
 alias gc='git commit -m'
 alias gca='git commit --amend'
 alias gp='git push'
@@ -179,5 +186,16 @@ alias yt-720='yt-dlp -f "bestvideo[height=720]+bestaudio/best[height=720]"'
 alias exit-user='pkill -TERM -u $USER'
 alias logout-user='pkill Hyprland || pkill tmux || loginctl terminate-user $USER'
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#==========
+#  MISC
+#==========
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='nvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
