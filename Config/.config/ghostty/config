@@ -5,27 +5,29 @@ font-family = CaskaydiaCove Nerd Font
 font-size = 17
 
 #[ Cursor - #FFFF33 - #00CCFF - #FF073A - #39FF14]
-cursor-color = #FFFF33
+cursor-color = #B026FF
 cursor-text = #000000
 cursor-style = block
 cursor-style-blink = true
 
-background-opacity = 0.95
+background-opacity = 0.90
 
 window-padding-x = 5
 window-padding-y = 5
 
 #[ MISC ]
-window-decoration = false
-bell-features = system
+shell-integration = zsh
+shell-integration-features = no-cursor
+bell-features = title
  
 gtk-single-instance = true
-shell-integration = zsh
+window-decoration = false
 confirm-close-surface = false
 
-#[ THEMES - axgruv - mono - 12-bit - Glacier ] 
+#[ THEMES - axgruv - mono - Vesper - - Mathias ] 
 theme = "Matte Black"
-# theme = "Dark Pastel"
+# theme = "Mathias"
+# theme = "Builtin Pastel Dark"
 # theme = ""
 
 #[ Shaders_Main ]
