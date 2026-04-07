@@ -18,7 +18,7 @@ PACMAN_PKGS=(
   nodejs-lts-iron npm
   python python-pip python-uv python-virtualenv 
   uv rustup lldb
-  git stow tree-sitter-cli
+  git stow tree-sitter-cli pkgfile
 
   # ---- Utilities ----
   btop nvtop curl wget
