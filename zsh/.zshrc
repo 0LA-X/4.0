@@ -14,10 +14,10 @@ if [[ -o interactive ]]; then
   # fastfetch
 fi
 
-# -- Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# # -- Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.; everything else may go below.
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # -- Source/load completions  
 autoload -Uz compinit
@@ -47,7 +47,13 @@ autoload -Uz _zinit
 #   PLUGINS 
 # ============
 #[Powerlevel10k]
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+# zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# -- Starship
+zinit ice as"command" from"gh-r" \
+  atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+  atpull"%atclone" src"init.zsh"
+zinit light starship/starship
 
 # -- ZVM/zsh-vi-mode
 zinit ice depth=1; zinit light jeffreytse/zsh-vi-mode
@@ -66,7 +72,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#E3E4FA"
 
 # -- zsh-history-substring-search
 zinit light zsh-users/zsh-history-substring-search
-zinit ice wait atload'_history_substring_search_config'
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='fg=#39FF14'
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='fg=#0D1117'
 
@@ -100,7 +105,7 @@ done
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
 #============
