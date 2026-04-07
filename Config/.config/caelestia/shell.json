@@ -165,7 +165,7 @@
       "showOnHover": true
     },
     "tray": {
-      "background": true,
+      "background": false,
       "recolour": false,
       "compact": false,
       "iconSubs": [],
@@ -173,7 +173,7 @@
     },
     "status": {
       "showAudio": true,
-      "showMicrophone": true,
+      "showMicrophone": false,
       "showKbLayout": false,
       "showNetwork": true,
       "showWifi": true,
@@ -284,7 +284,6 @@
       "org.gnome.Extensions",
       "org.gnome.Connections",
       "org.gnome.Music",
-      "org.gnome.SystemMonitor",
       "nwg-look"
     ],
     "useFuzzy": {
@@ -458,11 +457,11 @@
   "notifs": {
     "expire": true,
     "fullscreen": "on",
-    "defaultExpireTimeout": 7000,
+    "defaultExpireTimeout": 8000,
     "clearThreshold": 0.3,
     "expandThreshold": 20,
     "actionOnClick": false,
-    "groupPreviewNum": 5,
+    "groupPreviewNum": 6,
     "openExpanded": false
   },
   "osd": {
@@ -513,7 +512,7 @@
     "maxToasts": 4,
     "toasts": {
       "configLoaded": true,
-      "fullscreen": "off",
+      "fullscreen": "all",
       "chargingChanged": true,
       "gameModeChanged": true,
       "dndChanged": true,
@@ -588,7 +587,7 @@
       }
     ],
     "showLyrics": false,
-    "lyricsBackend": "Auto"
+    "lyricsBackend": "NetEase"
   },
   "paths": {
     "wallpaperDir": "/home/ola-x/Pictures/Wallpapers",
