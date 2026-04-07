@@ -15,11 +15,11 @@ $cmd_duration\
 $line_break\
 $character"""
 
-right_format = """
-[](vesper)\
-$battery\
-[ ](color_pink)\
-"""
+# right_format = """
+# [](vesper)\
+# $battery\
+# [ ](color_pink)\
+# """
 
 palette = 'welp'
 
@@ -154,7 +154,8 @@ style = 'color_green'
   ## vimcmd_symbol = '[❮](color_sblue)'
 
 [character]
-success_symbol = " [](color_purple)"
+# success_symbol = " [](color_purple)"
+success_symbol = " [](color_purple)"
 error_symbol = " [](color_red)"
 vicmd_symbol = "[  ](color_sblue)"
 
